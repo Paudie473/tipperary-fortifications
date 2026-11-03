@@ -1,0 +1,29 @@
+{
+  "name": "tipperary-fortifications",
+  "version": "0.1.0",
+  "description": "Website to capture location and information about castles and other fortifications in County Tipperary",
+  "license": "ISC",
+  "author": "Páidí Ryan",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon --exec npm start",
+    "lint": "eslint . --ext .js"
+  },
+  "dependencies": {
+    "@hapi/cookie": "^12.0.1",
+    "@hapi/hapi": "^21.4.12",
+    "@hapi/vision": "^7.0.3",
+    "handlebars": "^4.7.10",
+    "uuid": "^14.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "nodemon": "^3.1.14",
+    "prettier": "^3.9.10"
+  }
+}
