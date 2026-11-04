@@ -22,8 +22,8 @@ export const addSiteController = {
         name: request.payload.name,
         address: request.payload.address,
         type: request.payload.type,
-        lat: Number(request.payload.lat),
-        long: Number(request.payload.long),
+        lattitude: Number(request.payload.lattitude),
+        longitude: Number(request.payload.longitude),
         description: request.payload.description,
         userid: loggedInUser._id,
       };

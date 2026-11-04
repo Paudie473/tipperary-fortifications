@@ -25,8 +25,8 @@ export const SiteSpec = {
         "Fortified Settlement",
         "Other"
     ).required(),
-  lat: Joi.number().required(),
-  long: Joi.number().required(),
+  lattitude: Joi.number().required(),
+  longitude: Joi.number().required(),
   description: Joi.string().required()
 };
 

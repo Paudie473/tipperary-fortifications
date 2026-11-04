@@ -6,8 +6,8 @@ const siteSchema = new Schema({
   name: String,
   address: String,
   type: String,
-  lat: Number,
-  long: Number,
+  lattitude: Number,
+  longitude: Number,
   description: String,
   userid: {
     type: Schema.Types.ObjectId,

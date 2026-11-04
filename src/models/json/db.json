@@ -27,8 +27,8 @@
       "name": "Cahir Castle",
       "address": "Castle Street, Townparks, Cahir, Co. Tipperary, E21 P652, Ireland",
       "type": "Castle",
-      "lat": 52.3745,
-      "long": -7.9272,
+      "lattitude": 52.3745,
+      "longitude": -7.9272,
       "description": "Cahir Castle (Irish: Caisleán na Cathrach), one of the largest castles in Ireland, is sited on an island in the river Suir.",
       "_id": "0bfa24e6-fd9b-4d2b-a377-a52ceb8f5683"
     }
