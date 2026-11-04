@@ -1,11 +1,12 @@
 import { assert } from "chai";
-import { db } from "../src/models/db.js";
-import { testSites, rockOfCashel } from "./fixtures.js";
+import { assertSubset } from "../test-utils.js";
+import { db } from "../../src/models/db.js";
+import { testSites, rockOfCashel } from "../fixtures.js";
 
 suite("Site Model tests", () => {
 
   setup(async () => {
-    db.init("json");
+    db.init("mongo");
     await db.siteStore.deleteAllSites();
     for (let i = 0; i < testSites.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
@@ -15,7 +16,7 @@ suite("Site Model tests", () => {
 
   test("create a site", async () => {
     const site = await db.siteStore.addSite(rockOfCashel);
-    assert.equal(rockOfCashel, site);
+    assertSubset(rockOfCashel, site);
     assert.isDefined(site._id);
   });
 
@@ -30,7 +31,7 @@ suite("Site Model tests", () => {
   test("get a site - success", async () => {
     const site = await db.siteStore.addSite(rockOfCashel);
     const returnedSite = await db.siteStore.getSiteById(site._id);
-    assert.equal(rockOfCashel, site);
+    assertSubset(rockOfCashel, site);
   });
 
   test("delete One Playist - success", async () => {

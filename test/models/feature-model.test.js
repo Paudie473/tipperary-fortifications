@@ -1,13 +1,14 @@
 import { assert } from "chai";
-import { db } from "../src/models/db.js";
-import { testSites, testFeatures, cahirCastle, rockOfCashel, chapel } from "./fixtures.js";
+import { assertSubset } from "../test-utils.js";
+import { db } from "../../src/models/db.js";
+import { testSites, testFeatures, cahirCastle, rockOfCashel, chapel } from "../fixtures.js";
 
 suite("Feature Model tests", () => {
 
   let cahirCastleList = null;
 
   setup(async () => {
-    db.init("json");
+    db.init("mongo");
     await db.siteStore.deleteAllSites();
     await db.featureStore.deleteAllFeatures();
     cahirCastleList = await db.siteStore.addSite(cahirCastle);
@@ -21,7 +22,7 @@ suite("Feature Model tests", () => {
     const rockOfCashelList = await db.siteStore.addSite(rockOfCashel);
     const feature = await db.featureStore.addFeature(rockOfCashelList._id, chapel)
     assert.isNotNull(feature._id);
-    assert.equal(chapel, feature);
+    assertSubset(chapel, feature);
   });
 
   test("get multiple features", async () => {
@@ -41,7 +42,7 @@ suite("Feature Model tests", () => {
     const rockOfCashelList = await db.siteStore.addSite(rockOfCashel);
     const feature = await db.featureStore.addFeature(rockOfCashelList._id, chapel)
     const newFeature = await db.featureStore.getFeatureById(feature._id);
-    assert.deepEqual(chapel, newFeature);
+    assertSubset(chapel, newFeature);
   });
 
   test("delete One Feature - success", async () => {

@@ -5,28 +5,21 @@
       "lastName": "Simpson",
       "email": "homer@simpson.com",
       "password": "secret",
-      "_id": "bdae1d80-d9e3-4016-94f1-bcb812862a12"
+      "_id": "fdbdf410-f5f4-4061-857b-f39d84ea1d1d"
     },
     {
       "firstName": "Marge",
       "lastName": "Simpson",
       "email": "marge@simpson.com",
       "password": "secret",
-      "_id": "1bb3dd1d-497c-48a4-9a9d-7a94f86c81f7"
+      "_id": "e03b0fd1-2df0-49e5-ba74-300ceb02dd93"
     },
     {
       "firstName": "Bart",
       "lastName": "Simpson",
       "email": "bart@simpson.com",
       "password": "secret",
-      "_id": "fea779ee-887e-4918-ba79-2270829ef31f"
-    },
-    {
-      "firstName": "Paudie",
-      "lastName": "Ryan",
-      "email": "paudieryan2000@gmail.com",
-      "password": "Paudie",
-      "_id": "adcdc5aa-7487-423e-a656-8bfda66af17f"
+      "_id": "9326d813-98b2-4618-8cb5-c1d3fcbcaf67"
     }
   ],
   "sites": [
@@ -37,25 +30,27 @@
       "lat": 52.3745,
       "long": -7.9272,
       "description": "Cahir Castle (Irish: Caisleán na Cathrach), one of the largest castles in Ireland, is sited on an island in the river Suir.",
-      "_id": "7630ddef-adc7-453c-84f0-f5b52973da3b"
-    },
-    {
-      "name": "Francis Castle",
-      "address": "Francis Land",
-      "type": "Castle",
-      "lat": 53.1234892047,
-      "long": -7.2134897132,
-      "description": "Francis lives here",
-      "userid": "adcdc5aa-7487-423e-a656-8bfda66af17f",
-      "_id": "55d26f48-9b25-4503-8fc2-d946a18c0114"
+      "_id": "0bfa24e6-fd9b-4d2b-a377-a52ceb8f5683"
     }
   ],
   "features": [
     {
-      "featureType": "Francis Turret",
-      "description": "A handsome turret",
-      "_id": "3e8e0fa9-436d-431e-9b32-90c099452f0e",
-      "siteid": "55d26f48-9b25-4503-8fc2-d946a18c0114"
+      "featureType": "Portcullis",
+      "description": "Still operational, making it one of the few working medieval portcullises in Ireland.",
+      "_id": "d3126244-9444-449b-9706-688d25109226",
+      "siteid": "0bfa24e6-fd9b-4d2b-a377-a52ceb8f5683"
+    },
+    {
+      "featureType": "Machicolations",
+      "description": "Surviving in good condition as part of the castle's original defensive features.",
+      "_id": "06b7ec4a-63c8-4525-a40c-fa60ca84cbc9",
+      "siteid": "0bfa24e6-fd9b-4d2b-a377-a52ceb8f5683"
+    },
+    {
+      "featureType": "Well Tower",
+      "description": "Largely intact, with its upper levels providing views across the River Suir and surrounding landscape.",
+      "_id": "7210cbc0-0f3e-4151-a961-51feee61825f",
+      "siteid": "0bfa24e6-fd9b-4d2b-a377-a52ceb8f5683"
     }
   ]
 }

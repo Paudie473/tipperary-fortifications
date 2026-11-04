@@ -1,0 +1,18 @@
+import Mongoose from "mongoose";
+
+const { Schema } = Mongoose;
+
+const siteSchema = new Schema({
+  name: String,
+  address: String,
+  type: String,
+  lat: Number,
+  long: Number,
+  description: String,
+  userid: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
+});
+
+export const Site = Mongoose.model("Site", siteSchema);
