@@ -1,5 +1,6 @@
 import { userMemStore } from "./mem/user-mem-store.js";
-import { structMemStore } from "./mem/struct-mem-store.js";
+import { siteMemStore } from "./mem/site-mem-store.js";
+import { featureMemStore } from "./mem/feature-mem-store.js";
 
 export const db = {
   userStore: null,
@@ -7,6 +8,7 @@ export const db = {
 
   init() {
     this.userStore = userMemStore;
-    this.structStore = structMemStore;
+    this.siteStore = siteMemStore;
+    this.featureStore = featureMemStore;
   },
 };

@@ -1,0 +1,24 @@
+{{> menu}}
+
+<section class="section">
+  <div class="block">
+    <h1 class="title">
+        {{site.name}}
+    </h1>
+    <h2 class="subtitle">{{site.address}}</h2>
+    <span class="tag"> Category: {{site.type}} </span>
+  </div>
+  <div class="content block is-small">
+    <p>
+        Coordinates: {{site.lat}},{{site.long}}
+    </p>
+  </div>
+  <div class="content block">
+    <h3>Description</h3>
+    <p>
+        {{site.description}}
+    </p>
+  </div>
+  {{> list-features-deletable}}
+  {{> add-feature}}
+</section>

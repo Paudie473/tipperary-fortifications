@@ -1,0 +1,26 @@
+{{#if site.features}}
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+    {{#each site.features}}
+      <tr>
+        <td>
+          {{name}}
+        </td>
+        <td>
+          {{description}}
+        </td>
+        <td>
+          <a href="/site/{{../site._id}}/deletefeature/{{_id}}" class="ui icon button">
+            <i class="fas fa-trash"></i>
+          </a>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+{{/if}}
