@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon --exec npm start",
-    "lint": "eslint . --ext .js"
+    "lint": "eslint . --ext .js",
+    "test": "mocha"
   },
   "dependencies": {
     "@hapi/cookie": "^12.0.1",
@@ -19,13 +20,16 @@
     "handlebars": "^4.7.10",
     "joi": "^18.3.1",
     "lowdb": "^7.0.1",
+    "mongoose": "^9.11.4",
     "uuid": "^14.0.3"
   },
   "devDependencies": {
+    "chai": "^6.3.0",
     "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
+    "mocha": "^10.8.2",
     "nodemon": "^3.1.14",
     "prettier": "^3.9.10"
   }

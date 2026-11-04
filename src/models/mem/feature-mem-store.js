@@ -15,16 +15,20 @@ export const featureMemStore = {
   },
 
   async getFeaturesBySiteId(id) {
-    return features.filter((feature) => feature.playlistid === id);
+    let list = features.filter((feature) => feature.playlistid === id);
+    if (list == undefined) list = null;
+    return list;
   },
 
   async getFeatureById(id) {
-    return features.find((feature) => feature._id === id);
+    let feature = features.find((feature) => feature._id === id);
+    if (feature == undefined) feature = null;
+    return feature;
   },
 
   async deleteFeature(id) {
     const index = features.findIndex((feature) => feature._id === id);
-    features.splice(index, 1);
+    if (index !== -1) features.splice(index, 1);
   },
 
   async deleteAllFeatures() {

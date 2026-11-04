@@ -9,11 +9,12 @@
     <label class="label">Site Type:</label>
     <div class="select is-fullwidth">
       <select name="type">
+        <option value="" disabled selected>Select the option that best describes the site's primary historical purpose...</option>
         <option value="Castle">Castle</option>
         <option value="Royal Site">Royal Site</option>
         <option value="Ecclesiastical Site">Ecclesiastical Site</option>
         <option value="Monastic Site">Monastic Site</option>
-        <option value="manor / Fortified Residence">Manor / Fortified Residence</option>
+        <option value="Manor / Fortified Residence">Manor / Fortified Residence</option>
         <option value="Tower">Tower</option>
         <option value="Fortified Settlement">Fortified Settlement</option>
         <option value="Other">Other</option>
@@ -22,8 +23,8 @@
   </div>
   <label class="label">Coordinates</label>
   <div class="field is-horizontal">
-    <input class="input" type="number" placeholder="Lattitude" name="lat">
-    <input class="input" type="number" placeholder="Longitude" name="long">
+    <input class="input" type="number" placeholder="Lattitude" name="lat" step="any">
+    <input class="input" type="number" placeholder="Longitude" name="long" step="any">
   </div>
   <div class="field">
     <label class="label">Description</label>

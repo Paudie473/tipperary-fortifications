@@ -1,4 +1,5 @@
 import { db } from "../models/db.js";
+import { FeatureSpec } from "../models/joi-schemas.js";
 
 export const siteController = {
   index: {
@@ -13,10 +14,18 @@ export const siteController = {
   },
 
   addFeature: {
+    validate: {
+      payload: FeatureSpec,
+      options: { abortEarly: false },
+      failAction: async function (request, h, error) {
+        const site = await db.siteStore.getSiteById(request.params.id);
+        return h.view("site", { title: "Error adding feature", site, errors: error.details }).takeover().code(400);
+      },
+    },
     handler: async function (request, h) {
       const site = await db.siteStore.getSiteById(request.params.id);
       const newFeature = {
-        name: request.payload.name,
+        featureType: request.payload.featureType,
         description: request.payload.description,
       };
       await db.featureStore.addFeature(site._id, newFeature);

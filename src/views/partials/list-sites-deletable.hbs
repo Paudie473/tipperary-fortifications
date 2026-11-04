@@ -1,26 +1,17 @@
-{{#if site.features}}
-<table class="table is-fullwidth">
-  <thead>
-    <tr>
-      <th>Feature</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-    {{#each site.features}}
-      <tr>
-        <td>
-          {{name}}
-        </td>
-        <td>
-          {{description}}
-        </td>
-        <td>
-          <a href="/site/{{../site._id}}/deletefeature/{{_id}}" class="ui icon button">
-            <i class="fas fa-trash"></i>
-          </a>
-        </td>
-      </tr>
-    {{/each}}
-  </tbody>
-</table>
-{{/if}}
+{{#each sites}}
+  <div class="box box-link-hover-shadow">
+    <h2 class="title">
+      {{name}}
+    </h2>
+    <a href="/site/{{_id}}" class="button">
+      <span class="icon is-small">
+        <i class="fas fa-folder-open"></i>
+      </span>
+    </a>
+    <a href="/dashboard/deletesite/{{_id}}" class="button">
+      <span class="icon is-small">
+        <i class="fas fa-trash"></i>
+      </span>
+    </a>
+  </div>
+{{/each}}

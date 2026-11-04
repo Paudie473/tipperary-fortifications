@@ -1,0 +1,61 @@
+{
+  "users": [
+    {
+      "firstName": "Homer",
+      "lastName": "Simpson",
+      "email": "homer@simpson.com",
+      "password": "secret",
+      "_id": "bdae1d80-d9e3-4016-94f1-bcb812862a12"
+    },
+    {
+      "firstName": "Marge",
+      "lastName": "Simpson",
+      "email": "marge@simpson.com",
+      "password": "secret",
+      "_id": "1bb3dd1d-497c-48a4-9a9d-7a94f86c81f7"
+    },
+    {
+      "firstName": "Bart",
+      "lastName": "Simpson",
+      "email": "bart@simpson.com",
+      "password": "secret",
+      "_id": "fea779ee-887e-4918-ba79-2270829ef31f"
+    },
+    {
+      "firstName": "Paudie",
+      "lastName": "Ryan",
+      "email": "paudieryan2000@gmail.com",
+      "password": "Paudie",
+      "_id": "adcdc5aa-7487-423e-a656-8bfda66af17f"
+    }
+  ],
+  "sites": [
+    {
+      "name": "Cahir Castle",
+      "address": "Castle Street, Townparks, Cahir, Co. Tipperary, E21 P652, Ireland",
+      "type": "Castle",
+      "lat": 52.3745,
+      "long": -7.9272,
+      "description": "Cahir Castle (Irish: Caisleán na Cathrach), one of the largest castles in Ireland, is sited on an island in the river Suir.",
+      "_id": "7630ddef-adc7-453c-84f0-f5b52973da3b"
+    },
+    {
+      "name": "Francis Castle",
+      "address": "Francis Land",
+      "type": "Castle",
+      "lat": 53.1234892047,
+      "long": -7.2134897132,
+      "description": "Francis lives here",
+      "userid": "adcdc5aa-7487-423e-a656-8bfda66af17f",
+      "_id": "55d26f48-9b25-4503-8fc2-d946a18c0114"
+    }
+  ],
+  "features": [
+    {
+      "featureType": "Francis Turret",
+      "description": "A handsome turret",
+      "_id": "3e8e0fa9-436d-431e-9b32-90c099452f0e",
+      "siteid": "55d26f48-9b25-4503-8fc2-d946a18c0114"
+    }
+  ]
+}

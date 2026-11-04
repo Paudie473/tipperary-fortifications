@@ -1,4 +1,5 @@
 import { db } from "../models/db.js";
+import { SiteSpec } from "../models/joi-schemas.js";
 
 export const addSiteController = {
   index: {
@@ -8,6 +9,13 @@ export const addSiteController = {
   },
 
   addSite: {
+    validate: {
+      payload: SiteSpec,
+      options: { abortEarly: false },
+      failAction: async function (request, h, error) {
+        return h.view("add-site-page", { title: "Error adding site", errors: error.details }).takeover().code(400);
+      },
+    },
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
       const newSite = {

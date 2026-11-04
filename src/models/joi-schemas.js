@@ -6,3 +6,31 @@ export const UserSpec = {
   email: Joi.string().email().required(),
   password: Joi.string().required(),
 };
+
+export const UserCredentialsSpec = {
+  email: Joi.string().email().required(),
+  password: Joi.string().required(),
+};
+
+export const SiteSpec = {
+  name: Joi.string().required(),
+  address: Joi.string().required(),
+  type: Joi.string().valid(
+        "Castle",
+        "Royal Site",
+        "Ecclesiastical Site",
+        "Monastic Site",
+        "Manor / Fortified Residence",
+        "Tower",
+        "Fortified Settlement",
+        "Other"
+    ).required(),
+  lat: Joi.number().required(),
+  long: Joi.number().required(),
+  description: Joi.string().required()
+};
+
+export const FeatureSpec = {
+  featureType: Joi.string().required(),
+  description: Joi.string().required()
+};

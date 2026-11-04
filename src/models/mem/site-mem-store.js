@@ -15,21 +15,27 @@ export const siteMemStore = {
   },
 
   async getSiteById(id) {
-    const list = sites.find((site) => site._id === id);
-    list.features = await featureMemStore.getFeaturesBySiteId(list._id)
-    return list
+    let list = sites.find((site) => site._id === id);
+    if (list) {
+      list.features = await featureMemStore.getFeaturesBySiteId(list._id)
+    } else {
+      list = null;
+    }
+    return list;
   },
 
   async getUserSites(userid) {
-    return sites.filter((site) => site.userid === userid);
+    list = sites.filter((site) => site.userid === userid);
+    if (list == undefined) list = null;
+    return list;
   },
 
   async deleteSiteById(id) {
     const index = sites.findIndex((site) => site._id === id);
-    sites.splice(index, 1);
+    if (index !== -1) sites.splice(index, 1);
   },
 
-  async deleteAllsites() {
+  async deleteAllSites() {
     sites = [];
   },
 }
