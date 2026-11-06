@@ -1,6 +1,6 @@
 {
   "name": "tipperary-fortifications",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Website to capture location and information about castles and other fortifications in County Tipperary",
   "license": "ISC",
   "author": "Páidí Ryan",
@@ -10,7 +10,12 @@
     "start": "node src/server.js",
     "dev": "nodemon --exec npm start",
     "lint": "eslint . --ext .js",
-    "test": "mocha"
+    "test": "mocha test/**/*.js",
+    "testmodels": "mocha test/models/**/*.js",
+    "testapi": "mocha test/api/**/*.js"
+  },
+  "nodemonConfig": {
+    "ignore": ["src/models/json/**/*.json"]
   },
   "dependencies": {
     "@hapi/boom": "^10.0.1",

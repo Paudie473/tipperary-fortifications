@@ -11,7 +11,7 @@ import { featureMongoStore }from "./mongo/feature-mongo-store.js";
 
 export const db = {
   userStore: null,
-  playlistStore: null,
+  siteStore: null,
   featureStore: null,
 
   init(storeType) {

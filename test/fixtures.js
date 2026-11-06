@@ -82,6 +82,12 @@ export const chapel = {
     description: "A 12th-century Romanesque chapel consecrated in 1134, housing Ireland's only surviving Romanesque frescoes."
 };
 
+export const keep = {
+    featureType: "Keep",
+    description: "A well-preserved keep."
+};
+
+
 export const testFeatures = [
     {
         featureType: "Portcullis",

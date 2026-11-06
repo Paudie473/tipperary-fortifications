@@ -1,0 +1,76 @@
+import Boom from "@hapi/boom";
+import { db } from "../models/db.js";
+
+export const siteApi = {
+  find: {
+    auth: false,
+    handler: async function (request, h) {
+      try {
+        const sites = db.siteStore.getAllSites();
+        return sites;
+      } catch (err) {
+        return Boom.serverUnavailable("Database Error");
+      }
+    },
+  },
+
+  findOne: {
+    auth: false,
+    async handler(request) {
+      try {
+        const site = await db.siteStore.getSiteById(request.params.id);
+        if (!site) {
+          return Boom.notFound("No site with this id");
+        }
+        return site;
+      } catch (err) {
+        return Boom.serverUnavailable("Database Error");
+      }
+    },
+  },
+
+  create: {
+    auth: false,
+    handler: async function (request, h) {
+      try {
+        const site = request.payload;
+        const newSite = await db.siteStore.addSite(site);
+        if (newSite) {
+          return h.response(newSite).code(201);
+        }
+        return Boom.badImplementation("error creating site");
+      } catch (err) {
+        return Boom.serverUnavailable("Database Error");
+      }
+    },
+  },
+
+  deleteOne: {
+    auth: false,
+    handler: async function (request, h) {
+      try {
+        const site = await db.siteStore.getSiteById(request.params.id);
+        if (!site) {
+          return Boom.notFound("No site with this id");
+        }
+        await db.siteStore.deleteSiteById(site._id);
+        return h.response().code(204);
+      } catch (err) {
+        return Boom.serverUnavailable("Database Error");
+      }
+    },
+  },
+
+  deleteAll: {
+    auth: false,
+    handler: async function (request, h) {
+      try {
+        await db.siteStore.deleteAllSites();
+        return h.response().code(204);
+      } catch (err) {
+        return Boom.serverUnavailable("Database Error");
+      }
+    },
+  },
+};
+

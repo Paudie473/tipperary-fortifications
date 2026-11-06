@@ -7,23 +7,23 @@ export const featureMemStore = {
     return features;
   },
 
-  async addFeature(playlistId, feature) {
+  async addFeature(siteId, feature) {
     feature._id = v4();
-    feature.playlistid = playlistId;
+    feature.siteid = siteId;
     features.push(feature);
     return feature;
   },
 
   async getFeaturesBySiteId(id) {
-    let list = features.filter((feature) => feature.playlistid === id);
-    if (list == undefined) list = null;
+    let list = features.filter((feature) => feature.siteid === id);
+    if (list === undefined) list = null;
     return list;
   },
 
   async getFeatureById(id) {
-    let feature = features.find((feature) => feature._id === id);
-    if (feature == undefined) feature = null;
-    return feature;
+    let item = features.find((feature) => feature._id === id);
+    if (item === undefined) item = null;
+    return item;
   },
 
   async deleteFeature(id) {

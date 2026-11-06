@@ -15,18 +15,18 @@ export const siteMemStore = {
   },
 
   async getSiteById(id) {
-    let list = sites.find((site) => site._id === id);
-    if (list) {
-      list.features = await featureMemStore.getFeaturesBySiteId(list._id)
+    let item = sites.find((site) => site._id === id);
+    if (item) {
+      item.features = await featureMemStore.getFeaturesBySiteId(item._id)
     } else {
-      list = null;
+      item = null;
     }
-    return list;
+    return item;
   },
 
   async getUserSites(userid) {
     list = sites.filter((site) => site.userid === userid);
-    if (list == undefined) list = null;
+    if (list === undefined) list = null;
     return list;
   },
 
