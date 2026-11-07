@@ -34,7 +34,7 @@ suite("Site Model tests", () => {
     assertSubset(rockOfCashel, site);
   });
 
-  test("delete One Playist - success", async () => {
+  test("delete a site - success", async () => {
     const id = testSites[0]._id;
     await db.siteStore.deleteSiteById(id);
     const returnedSites = await db.siteStore.getAllSites();
@@ -48,7 +48,7 @@ suite("Site Model tests", () => {
     assert.isNull(await db.siteStore.getSiteById());
   });
 
-  test("delete One Site - fail", async () => {
+  test("delete a site - fail", async () => {
     await db.siteStore.deleteSiteById("bad-id");
     const allSites = await db.siteStore.getAllSites();
     assert.equal(testSites.length, allSites.length);

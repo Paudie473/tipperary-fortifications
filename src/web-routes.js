@@ -14,16 +14,16 @@ export const webRoutes = [
 
     { method: "GET", path: "/dashboard", config: dashboardController.index },
 
+    
+    { method: "GET", path: "/mycontributions", config: myContributionsController.index },
+    { method: "GET", path: "/deletesite/{id}", config: myContributionsController.deleteSite },
+
     { method: "GET", path: "/addsite", config: addSiteController.index },
     { method: "POST", path: "/addsite", config: addSiteController.addSite },
-
-    { method: "GET", path: "/mycontributions", config: myContributionsController.index },
-
-    { method: "GET", path: "/dashboard/deletesite/{id}", config: myContributionsController.deleteSite },
-
+    
     { method: "GET", path: "/site/{id}", config: siteController.index },
-
     { method: "POST", path: "/site/{id}/addfeature", config: siteController.addFeature },
-
     { method: "GET", path: "/site/{id}/deletefeature/{featureid}", config: siteController.deleteFeature },
+
+    { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } },
 ];
