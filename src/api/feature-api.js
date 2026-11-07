@@ -1,9 +1,13 @@
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
+import { FeatureSpec, FeatureSpecPlus, FeatureArraySpec, IdSpec } from "../models/joi-schemas.js";
+import { validationError } from "./logger.js";
 
 export const featureApi = {
   find: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const features = await db.featureStore.getAllFeatures();
@@ -12,10 +16,16 @@ export const featureApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Get all features",
+    notes: "Returns details of all features",
+    response: { schema: FeatureArraySpec, failAction: validationError },
   },
 
   findOne: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     async handler(request) {
       try {
         const feature = await db.featureStore.getFeatureById(request.params.id);
@@ -27,10 +37,17 @@ export const featureApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Get a specific feature",
+    notes: "Returns feature details",
+    validate: { params: { id: IdSpec }, failAction: validationError },
+    response: { schema: FeatureSpecPlus, failAction: validationError },
   },
 
   create: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const feature = await db.featureStore.addFeature(request.params.id, request.payload);
@@ -42,10 +59,17 @@ export const featureApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Create a feature",
+    notes: "Returns the newly created feature",
+    validate: { payload: FeatureSpec, failAction: validationError },
+    response: { schema: FeatureSpecPlus, failAction: validationError },
   },
 
   deleteAll: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         await db.featureStore.deleteAllFeatures();
@@ -54,10 +78,15 @@ export const featureApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Delete all features",
+    notes: "All features removed from database",
   },
 
   deleteOne: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const feature = await db.featureStore.getFeatureById(request.params.id);
@@ -70,5 +99,9 @@ export const featureApi = {
         return Boom.serverUnavailable("No feature with this id");
       }
     },
+    tags: ["api"],
+    description: "Delete all features",
+    notes: "All features removed from database",
+    validate: { params: { id: IdSpec }, failAction: validationError },
   },
 };

@@ -3,13 +3,20 @@ import { tipperaryFortificationsService } from "./tipperary-fortifications-servi
 import { assertSubset } from "../test-utils.js";
 import { maggie, testUsers } from "../fixtures.js";
 
+const users = new Array(testUsers.length);
+
 suite("User API tests", () => {
   setup(async () => {
+    tipperaryFortificationsService.clearAuth();
+    await tipperaryFortificationsService.createUser(maggie);
+    await tipperaryFortificationsService.authenticate(maggie);
     await tipperaryFortificationsService.deleteAllUsers();
     for (let i = 0; i < testUsers.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
-      testUsers[i] = await tipperaryFortificationsService.createUser(testUsers[i]);
+      users[0] = await tipperaryFortificationsService.createUser(testUsers[i]);
     }
+    await tipperaryFortificationsService.createUser(maggie);
+    await tipperaryFortificationsService.authenticate(maggie);
   });
   teardown(async () => {
   });
@@ -22,15 +29,17 @@ suite("User API tests", () => {
 
   test("delete all users", async () => {
     let returnedUsers = await tipperaryFortificationsService.getAllUsers();
-    assert.equal(returnedUsers.length, 3);
+    assert.equal(returnedUsers.length, 4);
     await tipperaryFortificationsService.deleteAllUsers();
+    await tipperaryFortificationsService.createUser(maggie);
+    await tipperaryFortificationsService.authenticate(maggie);
     returnedUsers = await tipperaryFortificationsService.getAllUsers();
-    assert.equal(returnedUsers.length, 0);
+    assert.equal(returnedUsers.length, 1);
   });
 
   test("get a user - success", async () => {
-    const returnedUser = await tipperaryFortificationsService.getUser(testUsers[0]._id);
-    assert.deepEqual(testUsers[0], returnedUser);
+    const returnedUser = await tipperaryFortificationsService.getUser(users[0]._id);
+    assert.deepEqual(users[0], returnedUser);
   });
 
   test("get a user - bad id", async () => {
@@ -45,6 +54,8 @@ suite("User API tests", () => {
 
   test("get a user - deleted user", async () => {
     await tipperaryFortificationsService.deleteAllUsers();
+    await tipperaryFortificationsService.createUser(maggie);
+    await tipperaryFortificationsService.authenticate(maggie);
     try {
       const returnedUser = await tipperaryFortificationsService.getUser(testUsers[0]._id);
       assert.fail("Should not return a response");

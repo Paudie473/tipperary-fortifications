@@ -1,9 +1,13 @@
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
+import { SiteSpec, SiteSpecPlus, SiteArraySpec, IdSpec } from "../models/joi-schemas.js";
+import { validationError } from "./logger.js";
 
 export const siteApi = {
   find: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const sites = db.siteStore.getAllSites();
@@ -12,10 +16,16 @@ export const siteApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Get all sites",
+    notes: "Returns details of all sites",
+    response: { schema: SiteArraySpec, failAction: validationError },
   },
 
   findOne: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     async handler(request) {
       try {
         const site = await db.siteStore.getSiteById(request.params.id);
@@ -27,10 +37,17 @@ export const siteApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Get a specific site",
+    notes: "Returns site details",
+    validate: { params: { id: IdSpec }, failAction: validationError },
+    response: { schema: SiteSpecPlus, failAction: validationError },
   },
 
   create: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const site = request.payload;
@@ -43,10 +60,34 @@ export const siteApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Create a site",
+    notes: "Returns the newly created site",
+    validate: { payload: SiteSpec, failAction: validationError },
+    response: { schema: SiteSpecPlus, failAction: validationError },
+  },
+
+  deleteAll: {
+    auth: {
+      strategy: "jwt",
+    },
+    handler: async function (request, h) {
+      try {
+        await db.siteStore.deleteAllSites();
+        return h.response().code(204);
+      } catch (err) {
+        return Boom.serverUnavailable("Database Error");
+      }
+    },
+    tags: ["api"],
+    description: "Delete all sites",
+    notes: "All sites removed from database",
   },
 
   deleteOne: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const site = await db.siteStore.getSiteById(request.params.id);
@@ -59,18 +100,10 @@ export const siteApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
-  },
-
-  deleteAll: {
-    auth: false,
-    handler: async function (request, h) {
-      try {
-        await db.siteStore.deleteAllSites();
-        return h.response().code(204);
-      } catch (err) {
-        return Boom.serverUnavailable("Database Error");
-      }
-    },
+    tags: ["api"],
+    description: "Delete all sites",
+    notes: "All sites removed from database",
+    validate: { params: { id: IdSpec }, failAction: validationError },
   },
 };
 

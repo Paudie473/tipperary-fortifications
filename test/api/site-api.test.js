@@ -12,9 +12,13 @@ suite("Site API tests", () => {
   let user = null;
 
   setup(async () => {
+    tipperaryFortificationsService.clearAuth();
+    user = await tipperaryFortificationsService.createUser(maggie);
+    await tipperaryFortificationsService.authenticate(maggie);
     await tipperaryFortificationsService.deleteAllSites();
     await tipperaryFortificationsService.deleteAllUsers();
     user = await tipperaryFortificationsService.createUser(maggie);
+    await tipperaryFortificationsService.authenticate(maggie);
     rockOfCashel.userid = user._id;
   });
 

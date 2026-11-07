@@ -8,10 +8,14 @@ suite("Feature API tests", () => {
   let cahirCastleFeatures = null;
 
   setup(async () => {
-    await tipperaryFortificationsService.deleteAllSites();
-    await tipperaryFortificationsService.deleteAllUsers();
-    await tipperaryFortificationsService.deleteAllFeatures();
+    tipperaryFortificationsService.clearAuth();
     user = await tipperaryFortificationsService.createUser(maggie);
+    await tipperaryFortificationsService.authenticate(maggie);
+    await tipperaryFortificationsService.deleteAllSites();
+    await tipperaryFortificationsService.deleteAllFeatures();
+    await tipperaryFortificationsService.deleteAllUsers();
+    user = await tipperaryFortificationsService.createUser(maggie);
+    await tipperaryFortificationsService.authenticate(maggie);
     cahirCastle.userid = user._id;
     cahirCastleFeatures = await tipperaryFortificationsService.createSite(cahirCastle);
   });

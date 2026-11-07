@@ -19,5 +19,7 @@ export const apiRoutes = [
   { method: "POST", path: "/api/sites/{id}/features", config: featureApi.create },
   { method: "DELETE", path: "/api/features", config: featureApi.deleteAll },
   { method: "DELETE", path: "/api/features/{id}", config: featureApi.deleteOne },
+
+  { method: "POST", path: "/api/users/authenticate", config: userApi.authenticate },
 ];
 
