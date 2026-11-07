@@ -16,17 +16,28 @@ import { apiRoutes } from "./api-routes.js";
 import { validate } from "./api/jwt-utils.js";
 
 const result = dotenv.config();
+
 if (result.error) {
   console.log(result.error.message);
   process.exit(1);
 }
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 const swaggerOptions = {
   info: {
     title: "Tipperary Castles and Fortifications API",
     version: "0.1",
   },
+  securityDefinitions: {
+    jwt: {
+      type: "apiKey",
+      name: "Authorization",
+      in: "header"
+    }
+  },
+  security: [{ jwt: [] }]
 };
 
 async function init() {
@@ -65,7 +76,7 @@ async function init() {
     validate: validate,
     verifyOptions: { algorithms: ["HS256"] }
   });
-  
+
   server.auth.default("session");
   
   server.views({

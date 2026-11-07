@@ -20,6 +20,13 @@ export const UserSpecPlus = UserSpec.keys({
 
 export const UserArraySpec = Joi.array().items(UserSpecPlus).label("UserArray");
 
+export const JwtAuth = Joi.object()
+  .keys({
+    success: Joi.boolean().example("true").required(),
+    token: Joi.string().example("eyJhbGciOiJND.g5YmJisIjoiaGYwNTNjAOhE.gCWGmY5-YigQw0DCBo").required(),
+  })
+  .label("JwtAuth");
+
 export const FeatureSpec = Joi.object()
   .keys({
   featureType: Joi.string().example("Cormac's Chapel").required(),
