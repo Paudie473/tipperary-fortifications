@@ -26,4 +26,6 @@ export const webRoutes = [
     { method: "GET", path: "/site/{id}/deletefeature/{featureid}", config: siteController.deleteFeature },
 
     { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } },
+
+    { method: "POST", path: "/site/{id}/uploadimage", config: siteController.uploadImage },
 ];

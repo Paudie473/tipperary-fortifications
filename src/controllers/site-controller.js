@@ -1,5 +1,6 @@
 import { db } from "../models/db.js";
 import { FeatureSpec } from "../models/joi-schemas.js";
+import { imageStore } from "../models/image-store.js";
 
 export const siteController = {
   index: {
@@ -38,6 +39,30 @@ export const siteController = {
       const site = await db.siteStore.getSiteById(request.params.id);
       await db.featureStore.deleteFeature(request.params.featureid);
       return h.redirect(`/site/${site._id}`);
+    },
+  },
+
+  uploadImage: {
+    handler: async function (request, h) {
+      try {
+        const site = await db.siteStore.getSiteById(request.params.id);
+        const file = request.payload.imagefile;
+        if (Object.keys(file).length > 0) {
+          const url = await imageStore.uploadImage(request.payload.imagefile);
+          site.img = url;
+          await db.siteStore.updateSite(site);
+        }
+        return h.redirect(`/site/${site._id}`);
+      } catch (err) {
+        console.log(err);
+        return h.redirect(`/site/${site._id}`);
+      }
+    },
+    payload: {
+      multipart: true,
+      output: "data",
+      maxBytes: 209715200,
+      parse: true,
     },
   },
 };
