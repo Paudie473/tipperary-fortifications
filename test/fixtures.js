@@ -43,12 +43,12 @@ export const rockOfCashel = {
 
 export const cahirCastle = {
     name: "Cahir Castle",
-        address: "Castle Street, Townparks, Cahir, Co. Tipperary, E21 P652, Ireland",
-        type: "Castle",
-        lattitude: 52.3745,
-        longitude: -7.9272,
-        // Wikipedia: https://en.wikipedia.org/wiki/Cahir_Castle
-        description: "Cahir Castle (Irish: Caisleán na Cathrach), one of the largest castles in Ireland, is sited on an island in the river Suir."
+    address: "Castle Street, Townparks, Cahir, Co. Tipperary, E21 P652, Ireland",
+    type: "Castle",
+    lattitude: 52.3745,
+    longitude: -7.9272,
+    // Wikipedia: https://en.wikipedia.org/wiki/Cahir_Castle
+    description: "Cahir Castle (Irish: Caisleán na Cathrach), one of the largest castles in Ireland, is sited on an island in the river Suir."
 
 };
 

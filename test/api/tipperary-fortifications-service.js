@@ -50,7 +50,12 @@ export const tipperaryFortificationsService = {
     return res.data;
   },
 
-    async createFeature(siteId, feature) {
+  async getUserSites() {
+    const res = await axios.get(`${this.tipperaryFortificationsUrl}/api/sites/user`);
+    return res.data;
+  },
+
+  async createFeature(siteId, feature) {
     const res = await axios.post(`${this.tipperaryFortificationsUrl}/api/sites/${siteId}/features`, feature);
     return res.data;
   },

@@ -44,6 +44,25 @@ export const siteApi = {
     response: { schema: SiteSpecPlus, failAction: validationError },
   },
 
+  findByUser: {
+    auth: {
+      strategy: "jwt",
+    },
+    handler: async function (request, h) {
+      try {
+        const userid = request.auth.credentials._id;
+        const userSites = await db.siteStore.getuserSites(userid);
+        return userSites;
+      } catch (err) {
+        return Boom.serverUnavailable("Database Error");
+      }
+    },
+    tags: ["api"],
+    response: { schema: SiteArraySpec, failAction: validationError },
+    description: "Get all sites belonging to the authenticated user",
+    notes: "Returns all sites belonging to the authenticated user",
+  },
+
   create: {
     auth: {
       strategy: "jwt",
@@ -51,7 +70,11 @@ export const siteApi = {
     handler: async function (request, h) {
       try {
         const site = request.payload;
-        const newSite = await db.siteStore.addSite(site);
+        const userid = request.auth.credentials._id;
+        const newSite = await db.siteStore.addSite(
+          site,
+          userid
+        );
         if (newSite) {
           return h.response(newSite).code(201);
         }

@@ -3,7 +3,7 @@ import { assert } from "chai";
 import { tipperaryFortificationsService } from "./tipperary-fortifications-service.js";
 import { assertSubset } from "../test-utils.js";
 
-import { maggie, rockOfCashel, testSites } from "../fixtures.js";
+import { maggieCredentials, maggie, rockOfCashel, testSites } from "../fixtures.js";
 
 EventEmitter.setMaxListeners(25);
 
@@ -14,11 +14,11 @@ suite("Site API tests", () => {
   setup(async () => {
     tipperaryFortificationsService.clearAuth();
     user = await tipperaryFortificationsService.createUser(maggie);
-    await tipperaryFortificationsService.authenticate(maggie);
+    await tipperaryFortificationsService.authenticate(maggieCredentials);
     await tipperaryFortificationsService.deleteAllSites();
     await tipperaryFortificationsService.deleteAllUsers();
     user = await tipperaryFortificationsService.createUser(maggie);
-    await tipperaryFortificationsService.authenticate(maggie);
+    await tipperaryFortificationsService.authenticate(maggieCredentials);
     rockOfCashel.userid = user._id;
   });
 
@@ -28,6 +28,7 @@ suite("Site API tests", () => {
     const returnedSite = await tipperaryFortificationsService.createSite(rockOfCashel);
     assert.isNotNull(returnedSite);
     assertSubset(rockOfCashel, returnedSite);
+    assert.equal(returnedSite.userid, user._id);
   });
 
   test("delete a site", async () => {

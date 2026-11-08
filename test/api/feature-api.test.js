@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import { assertSubset } from "../test-utils.js";
 import { tipperaryFortificationsService } from "./tipperary-fortifications-service.js";
-import { maggie, testFeatures, cahirCastle, keep } from "../fixtures.js";
+import { maggieCredentials, maggie, testFeatures, cahirCastle, keep } from "../fixtures.js";
 
 suite("Feature API tests", () => {
   let user = null;
@@ -10,12 +10,12 @@ suite("Feature API tests", () => {
   setup(async () => {
     tipperaryFortificationsService.clearAuth();
     user = await tipperaryFortificationsService.createUser(maggie);
-    await tipperaryFortificationsService.authenticate(maggie);
+    await tipperaryFortificationsService.authenticate(maggieCredentials);
     await tipperaryFortificationsService.deleteAllSites();
     await tipperaryFortificationsService.deleteAllFeatures();
     await tipperaryFortificationsService.deleteAllUsers();
     user = await tipperaryFortificationsService.createUser(maggie);
-    await tipperaryFortificationsService.authenticate(maggie);
+    await tipperaryFortificationsService.authenticate(maggieCredentials);
     cahirCastle.userid = user._id;
     cahirCastleFeatures = await tipperaryFortificationsService.createSite(cahirCastle);
   });
