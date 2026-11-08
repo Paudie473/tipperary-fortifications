@@ -123,3 +123,10 @@ dist
 
 # env file
 .env
+
+# PDF documents
+*.pdf
+
+# Word documents
+*.doc
+*.docx
