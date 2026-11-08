@@ -73,7 +73,6 @@ export const siteApi = {
         const userid = request.auth.credentials._id;
         const newSite = await db.siteStore.addSite(
           site,
-          userid
         );
         if (newSite) {
           return h.response(newSite).code(201);

@@ -36,7 +36,8 @@ export const seedData = {
         longitude: -7.89000,
         // Wikipedia: https://en.wikipedia.org/wiki/Rock_of_Cashel
         description: "The Rock of Cashel (Irish: Carraig Phádraig), also known as Cashel of the Kings and St. Patrick's Rock, is a historical site that served both as an ecclesiatic settlement and a seat of power for the Kings of Munster.",
-        userid: "->users.brianBoru"
+        userid: "->users.brianBoru",
+        img: "https://res.cloudinary.com/dgegej64r/image/upload/c_fill,f_auto,g_auto,h_800,q_auto,w_1200/q5czm21rbxrp924i2cfj?_a=BAMARORk0"
     },
     loughmoeCastle: {
         name: "Loughmoe Castle",
@@ -56,7 +57,8 @@ export const seedData = {
         longitude: -7.9272,
         // Wikipedia: https://en.wikipedia.org/wiki/Cahir_Castle
         description: "Cahir Castle (Irish: Caisleán na Cathrach), one of the largest castles in Ireland, is sited on an island in the river Suir.",
-        userid: "->users.conorOBrien"
+        userid: "->users.conorOBrien",
+        img: "https://res.cloudinary.com/dgegej64r/image/upload/c_fill,f_auto,g_auto,h_800,q_auto,w_1200/aelgqkokv1navynxuyzt?_a=BAMARORk0"
     },
     roscreaCastle: {
         name: "Roscrea Castle",

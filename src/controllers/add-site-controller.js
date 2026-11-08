@@ -4,7 +4,10 @@ import { SiteSpec } from "../models/joi-schemas.js";
 export const addSiteController = {
   index: {
     handler: async function (request, h) {
-      return h.view("add-site-page");
+      const viewData = {
+        title: "Add Site",
+      };
+      return h.view("add-site-page", viewData);
     },
   },
 
