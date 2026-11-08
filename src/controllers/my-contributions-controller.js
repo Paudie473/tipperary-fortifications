@@ -19,6 +19,8 @@ export const myContributionsController = {
   deleteSite: {
     handler: async function (request, h) {
       const site = await db.siteStore.getSiteById(request.params.id);
+      // The below logic is similar to what is used on the admin route for the users dashboard except it also allows use for creator of a given site
+      // It shows up a 403 error for anyone that isn't allowed to use it which is a little obstructive, but is fair as these URLs shouldn't even be available to such a user in userspace
       const loggedInUser = request.auth.credentials;
       const isAdmin = loggedInUser.role === "admin";
       const canEdit = isAdmin || String(loggedInUser._id) === String(site.userid);

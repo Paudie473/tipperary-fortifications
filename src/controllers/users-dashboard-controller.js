@@ -1,10 +1,11 @@
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
 
-// I added this controller for admins to view users and delete a user account if necessary. There ar
+// I added this controller for admins to view user accounts and delete them if necessary
 export const usersDashboardController = {
   index: {
     handler: async function (request, h) {
+      // If this is the specially seeded admin user, then they can access this locked admin feature
       if (request.auth.credentials.role !== "admin") {
         return Boom.forbidden("Admin access required");
       }

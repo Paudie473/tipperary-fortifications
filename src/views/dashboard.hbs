@@ -1,5 +1,6 @@
 {{> menu active="dashboard"}}
 
+<!-- Checks if the user is an admin, allowing them to delete anything on the page. Other users can only delte their contributions in the "My Contributions" page -->
 {{#if isAdmin}}
   <section class="section">
     {{> list-sites-deletable}}

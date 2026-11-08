@@ -19,7 +19,7 @@ const result = dotenv.config();
 
 if (result.error) {
   console.log(result.error.message);
-  process.exit(1);
+  // process.exit(1);
 }
 
 const __filename = fileURLToPath(import.meta.url);
@@ -43,7 +43,7 @@ const swaggerOptions = {
 async function init() {
   const server = Hapi.server({
     port: 3000,
-    host: "localhost",
+    host: "0.0.0.0",
   });
   await server.register(Vision);
   await server.register(Cookie);
@@ -63,8 +63,8 @@ async function init() {
 
   server.auth.strategy("session", "cookie", {
     cookie: {
-      name: process.env.COOKIE_NAME,
-      password: process.env.COOKIE_PASSWORD,
+      name: process.env.cookie_name,
+      password: process.env.cookie_password,
       isSecure: false,
     },
     redirectTo: "/",
