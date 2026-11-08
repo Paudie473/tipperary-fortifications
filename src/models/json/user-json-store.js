@@ -9,10 +9,10 @@ export const userJsonStore = {
 
   async addUser(user) {
     await db.read();
-    user._id = v4();
-    db.data.users.push(user);
+    const newUser = { ...user, _id: v4(), role: "user" };
+    db.data.users.push(newUser);
     await db.write();
-    return user;
+    return newUser;
   },
 
   async getUserById(id) {

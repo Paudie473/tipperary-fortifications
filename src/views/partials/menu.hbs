@@ -8,8 +8,12 @@
         <div class="navbar-item">
             <div class="buttons">
             <a id="dashboard" class="button" href="/dashboard"> Dashboard </a>
-            <a id="add-site" class="button" href="/addsite"> Add Structure </a>
+            <a id="add-site" class="button" href="/addsite"> Add Site </a>
             <a id="my-contributions" class="button" href="/mycontributions"> My Contributions </a>
+            <!-- Only admins see this option -->
+            {{#if isAdmin}}
+              <a id="users" class="button" href="/users"> Users </a>
+            {{/if}}
             <a id="logout" class="button" href="/logout"> Logout </a>
             </div>
         </div>

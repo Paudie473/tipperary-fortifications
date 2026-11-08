@@ -4,8 +4,10 @@ import { SiteSpec } from "../models/joi-schemas.js";
 export const addSiteController = {
   index: {
     handler: async function (request, h) {
+      const isAdmin = request.auth.credentials.role ==="admin";
       const viewData = {
         title: "Add Site",
+        isAdmin,
       };
       return h.view("add-site-page", viewData);
     },

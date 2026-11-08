@@ -5,25 +5,37 @@ export const seedData = {
       firstName: "Brian",
       lastName: "Boru",
       email: "brianboru@tipperaryfortifications.ie",
-      password: "secret"
+      password: "secret",
+      role: "user"
     },
     conorOBrien: {
       firstName: "Conor",
       lastName: "O'Brien",
       email: "conorobrien@tipperaryfortifications.ie",
-      password: "secret"
+      password: "secret",
+      role: "user"
     },
     nicholasPurcell: {
       firstName: "Nicholas",
       lastName: "Purcell",
       email: "nicholaspurcell@tipperaryfortifications.ie",
-      password: "secret"
+      password: "secret",
+      role: "user"
     },
     jamesButler: {
       firstName: "James",
       lastName: "Butler",
       email: "jamesbutler@tipperaryfortifications.ie",
-      password: "secret"
+      password: "secret",
+      role: "user"
+    },
+    // This specially seeded admin account is currently the only possible one with the "admin" role
+    admin: {
+      firstName: "Tipperary",
+      lastName: "Admin",
+      email: "admin@tipperaryfortifications.ie",
+      password: "secret",
+      role: "admin"
     }
   },
   sites: {

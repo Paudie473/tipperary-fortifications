@@ -14,6 +14,7 @@ export const UserSpec = UserCredentialsSpec.keys({
 }).label("UserDetails");
 
 export const UserSpecPlus = UserSpec.keys({
+  role: Joi.string(),
   _id: IdSpec,
   __v: Joi.number(),
 }).label("UserDetailsPlus");
@@ -45,6 +46,7 @@ export const SiteSpec = Joi.object()
   .keys({
     name: Joi.string().example("Rock of Cashel").required(),
     address: Joi.string().example("St. Patrick's Rock, Cashel, Co. Tipperary, E25 KX44, Ireland").required(),
+    // Only certain categories are allowed for a site
     type: Joi.string().valid(
           "Castle",
           "Royal Site",

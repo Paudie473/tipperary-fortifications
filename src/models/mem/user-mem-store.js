@@ -8,9 +8,9 @@ export const userMemStore = {
   },
 
   async addUser(user) {
-    user._id = v4();
-    users.push(user);
-    return user;
+    const newUser = { ...user, _id: v4(), role: "user" };
+    users.push(newUser);
+    return newUser;
   },
 
   async getUserById(id) {

@@ -6,9 +6,16 @@ export const siteController = {
   index: {
     handler: async function (request, h) {
       const site = await db.siteStore.getSiteById(request.params.id);
+      const loggedInUser = request.auth.credentials;
+      const isAdmin = loggedInUser.role === "admin";
+      const canEdit = isAdmin || String(loggedInUser._id) === String(site.userid);
+      const hasImg = Boolean(site.img)
       const viewData = {
         title: "Site Information",
         site: site,
+        isAdmin,
+        canEdit,
+        hasImg,
       };
       return h.view("site", viewData);
     },
@@ -25,6 +32,12 @@ export const siteController = {
     },
     handler: async function (request, h) {
       const site = await db.siteStore.getSiteById(request.params.id);
+      const loggedInUser = request.auth.credentials;
+      const isAdmin = loggedInUser.role === "admin";
+      const canEdit = isAdmin || String(loggedInUser._id) === String(site.userid);
+      if (!canEdit) {
+              return Boom.forbidden("Only the site contributor or an admin can add a feature to this site");
+            }
       const newFeature = {
         featureType: request.payload.featureType,
         description: request.payload.description,
@@ -37,6 +50,12 @@ export const siteController = {
   deleteFeature: {
     handler: async function(request, h) {
       const site = await db.siteStore.getSiteById(request.params.id);
+      const loggedInUser = request.auth.credentials;
+      const isAdmin = loggedInUser.role === "admin";
+      const canEdit = isAdmin || String(loggedInUser._id) === String(site.userid);
+      if (!canEdit) {
+              return Boom.forbidden("Only the site contributor or an admin can delete a feature from this site");
+            }
       await db.featureStore.deleteFeature(request.params.featureid);
       return h.redirect(`/site/${site._id}`);
     },
@@ -46,6 +65,12 @@ export const siteController = {
     handler: async function (request, h) {
       try {
         const site = await db.siteStore.getSiteById(request.params.id);
+        const loggedInUser = request.auth.credentials;
+        const isAdmin = loggedInUser.role === "admin";
+        const canEdit = isAdmin || String(loggedInUser._id) === String(site.userid);
+        if (!canEdit) {
+                return Boom.forbidden("Only the site contributor or an admin can add an image to this site");
+              }
         const file = request.payload.imagefile;
         if (Object.keys(file).length > 0) {
           const url = await imageStore.uploadImage(request.payload.imagefile);
