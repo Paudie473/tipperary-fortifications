@@ -27,6 +27,13 @@ export const siteJsonStore = {
     return list;
   },
 
+  async getSitesByType(type) {
+    await db.read();
+    let list = db.data.sites.filter((site) => site.type === type);
+    if (list === undefined) list = null;
+    return list
+  },
+
   async getUserSites(userid) {
     await db.read();
     let list = db.data.sites.filter((site) => site.userid === userid);

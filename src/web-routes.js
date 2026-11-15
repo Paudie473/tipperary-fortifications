@@ -4,6 +4,7 @@ import { addSiteController } from "./controllers/add-site-controller.js";
 import { myContributionsController } from "./controllers/my-contributions-controller.js";
 import { siteController } from "./controllers/site-controller.js";
 import { usersDashboardController } from "./controllers/users-dashboard-controller.js";
+import {userContributionsController} from "./controllers/user-contributions-controller.js"
 
 export const webRoutes = [
     { method: "GET", path: "/", config: accountsController.index },
@@ -32,4 +33,6 @@ export const webRoutes = [
 
     { method: "GET", path: "/users", config: usersDashboardController.index },
     { method: "GET", path: "/deleteuser/{id}", config: usersDashboardController.deleteUser },
+
+    { method: "GET", path: "/user/{id}", config: userContributionsController.index },
 ];

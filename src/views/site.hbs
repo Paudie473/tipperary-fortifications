@@ -22,6 +22,17 @@
             {{site.description}}
         </p>
       </div>
+      {{#if isAdmin}}
+        <div class="block">
+          <label class="label">Added by:</label>
+            <a href="/user/{{contributor._id}}" class="button">
+              <p>{{contributor.firstName}} {{contributor.lastName}}</p>
+              <span class="icon is-small">
+                <i class="fas fa-user"></i>
+              </span>
+            </a>
+        </div>
+      {{/if}}
       {{> list-features-deletable}}
       {{> add-feature}}
     </section>
@@ -62,6 +73,7 @@
             </figure>
           </div>
         {{/if}}
+      </div>
     </div>
   </section>
 {{/if}}

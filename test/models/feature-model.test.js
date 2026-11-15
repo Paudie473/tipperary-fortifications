@@ -8,7 +8,7 @@ suite("Feature Model tests", () => {
   let cahirCastleList = null;
 
   setup(async () => {
-    db.init("mongo");
+    await db.init("mongo", false);
     await db.siteStore.deleteAllSites();
     await db.featureStore.deleteAllFeatures();
     cahirCastleList = await db.siteStore.addSite(cahirCastle);

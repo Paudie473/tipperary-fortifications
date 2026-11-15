@@ -6,7 +6,7 @@ import { testSites, rockOfCashel } from "../fixtures.js";
 suite("Site Model tests", () => {
 
   setup(async () => {
-    db.init("mongo");
+    await db.init("mongo", false);
     await db.siteStore.deleteAllSites();
     for (let i = 0; i < testSites.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
@@ -31,7 +31,16 @@ suite("Site Model tests", () => {
   test("get a site - success", async () => {
     const site = await db.siteStore.addSite(rockOfCashel);
     const returnedSite = await db.siteStore.getSiteById(site._id);
-    assertSubset(rockOfCashel, site);
+    assertSubset(rockOfCashel, returnedSite);
+  });
+
+  test("get a site by type - success", async () => {
+    await db.siteStore.addSite(rockOfCashel);
+    let returnedSites = await db.siteStore.getSitesByType("Royal Site");
+    assert.equal(returnedSites.length, 1);
+    assertSubset(rockOfCashel, returnedSites[0]);
+    returnedSites = await db.siteStore.getSitesByType("Castle");
+    assert.equal(returnedSites.length, 2);
   });
 
   test("delete a site - success", async () => {

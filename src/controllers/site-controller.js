@@ -6,13 +6,15 @@ export const siteController = {
   index: {
     handler: async function (request, h) {
       const site = await db.siteStore.getSiteById(request.params.id);
+      const contributor = await db.userStore.getUserById(site.userid);
       const loggedInUser = request.auth.credentials;
       const isAdmin = loggedInUser.role === "admin";
       const canEdit = isAdmin || String(loggedInUser._id) === String(site.userid);
       const hasImg = Boolean(site.img)
       const viewData = {
         title: "Site Information",
-        site: site,
+        site,
+        contributor,
         isAdmin,
         canEdit,
         hasImg,

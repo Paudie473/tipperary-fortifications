@@ -14,7 +14,7 @@ export const db = {
   siteStore: null,
   featureStore: null,
 
-  init(storeType) {
+  async init(storeType, shouldSeed = true) {
     switch (storeType) {
       case "json":
         this.userStore = userJsonStore;
@@ -25,7 +25,7 @@ export const db = {
         this.userStore = userMongoStore;
         this.siteStore = siteMongoStore;
         this.featureStore = featureMongoStore;
-        connectMongo();
+        await connectMongo(shouldSeed);
         break;
       default:
         this.userStore = userMemStore;

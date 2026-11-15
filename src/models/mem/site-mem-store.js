@@ -24,6 +24,12 @@ export const siteMemStore = {
     return item;
   },
 
+  async getSitesByType(type) {
+    list = sites.filter((site) => site.type === type);
+    if (list === undefined) list = null;
+    return list;
+  },
+
   async getUserSites(userid) {
     list = sites.filter((site) => site.userid === userid);
     if (list === undefined) list = null;

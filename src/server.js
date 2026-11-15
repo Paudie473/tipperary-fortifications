@@ -90,7 +90,7 @@ async function init() {
     layout: true,
     isCached: false,
   });
-  db.init("mongo");
+  await db.init("mongo");
   server.route(webRoutes);
   server.route(apiRoutes);
   await server.start();

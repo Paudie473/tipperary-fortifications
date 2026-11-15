@@ -25,6 +25,11 @@ export const siteMongoStore = {
     return this.getSiteById(siteObj._id);
   },
 
+  async getSitesByType(type) {
+    const site = await Site.find({ type: type }).lean();
+    return site;
+  },
+
   async getUserSites(id) {
     const site = await Site.find({ userid: id }).lean();
     return site;
