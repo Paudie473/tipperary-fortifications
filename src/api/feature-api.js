@@ -62,7 +62,8 @@ export const featureApi = {
     tags: ["api"],
     description: "Create a feature",
     notes: "Returns the newly created feature",
-    validate: { payload: FeatureSpec, failAction: validationError },
+    // This path actually takes url params and a payload so I validate for both and changed the joi validation as well
+    validate: { params: {id: IdSpec}, payload: FeatureSpec, failAction: validationError },
     response: { schema: FeatureSpecPlus, failAction: validationError },
   },
 

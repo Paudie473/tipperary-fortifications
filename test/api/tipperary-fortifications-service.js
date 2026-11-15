@@ -50,8 +50,18 @@ export const tipperaryFortificationsService = {
     return res.data;
   },
 
-  async getUserSites() {
-    const res = await axios.get(`${this.tipperaryFortificationsUrl}/api/sites/user`);
+  async getMySites() {
+    const res = await axios.get(`${this.tipperaryFortificationsUrl}/api/sites/mycontributions`);
+    return res.data;
+  },
+
+  async getUserSites(id) {
+    const res = await axios.get(`${this.tipperaryFortificationsUrl}/api/sites/user/${id}`);
+    return res.data;
+  },
+
+  async getTypeSites(type) {
+    const res = await axios.get(`${this.tipperaryFortificationsUrl}/api/sites/type/${type}`);
     return res.data;
   },
 

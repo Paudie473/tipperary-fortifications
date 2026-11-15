@@ -12,7 +12,9 @@ export const apiRoutes = [
   { method: "DELETE", path: "/api/sites", config: siteApi.deleteAll },
   { method: "GET", path: "/api/sites", config: siteApi.find },
   { method: "GET", path: "/api/sites/{id}", config: siteApi.findOne },
-  { method: "GET", path: "/api/sites/user", config: siteApi.findByUser },
+  { method: "GET", path: "/api/sites/mycontributions", config: siteApi.findMyContributions },
+  { method: "GET", path: "/api/sites/user/{id}", config: siteApi.findByUser },
+  { method: "GET", path: "/api/sites/type/{type}", config: siteApi.findByType },
   { method: "DELETE", path: "/api/sites/{id}", config: siteApi.deleteOne },
 
   { method: "GET", path: "/api/features", config: featureApi.find },

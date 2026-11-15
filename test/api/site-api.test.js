@@ -64,5 +64,19 @@ suite("Site API tests", () => {
       assert(error.response.data.message === "No site with this id", "Incorrect Response Message");
     }
   });
+
+  test("get a site by type - success", async () => {
+      for (let i = 0; i < testSites.length; i += 1) {
+        testSites[i].userid = user._id;
+        // eslint-disable-next-line no-await-in-loop
+        await tipperaryFortificationsService.createSite(testSites[i]);
+      }
+      await tipperaryFortificationsService.createSite(rockOfCashel);
+      let returnedSites = await tipperaryFortificationsService.getTypeSites("Royal Site");
+      assert.equal(returnedSites.length, 1);
+      assertSubset(rockOfCashel, returnedSites[0]);
+      returnedSites = await tipperaryFortificationsService.getTypeSites("Castle");
+      assert.equal(returnedSites.length, 2);
+    });
 });
 

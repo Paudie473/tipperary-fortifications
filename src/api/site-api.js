@@ -1,6 +1,6 @@
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
-import { SiteSpec, SiteSpecPlus, SiteArraySpec, IdSpec } from "../models/joi-schemas.js";
+import { SiteSpec, SiteSpecPlus, SiteArraySpec, IdSpec, TypeSpec } from "../models/joi-schemas.js";
 import { validationError } from "./logger.js";
 
 export const siteApi = {
@@ -44,14 +44,14 @@ export const siteApi = {
     response: { schema: SiteSpecPlus, failAction: validationError },
   },
 
-  findByUser: {
+  findMyContributions: {
     auth: {
       strategy: "jwt",
     },
     handler: async function (request, h) {
       try {
         const userid = request.auth.credentials._id;
-        const userSites = await db.siteStore.getuserSites(userid);
+        const userSites = await db.siteStore.getUserSites(userid);
         return userSites;
       } catch (err) {
         return Boom.serverUnavailable("Database Error");
@@ -61,6 +61,46 @@ export const siteApi = {
     response: { schema: SiteArraySpec, failAction: validationError },
     description: "Get all sites belonging to the authenticated user",
     notes: "Returns all sites belonging to the authenticated user",
+  },
+
+  findByUser: {
+    auth: {
+      strategy: "jwt",
+    },
+    handler: async function (request, h) {
+      try {
+        const userid = request.params.id
+        const userSites = await db.siteStore.getUserSites(userid);
+        return userSites;
+      } catch (err) {
+        return Boom.serverUnavailable("Database Error");
+      }
+    },
+    tags: ["api"],
+    validate: { params: { id: IdSpec }, failAction: validationError },
+    response: { schema: SiteArraySpec, failAction: validationError },
+    description: "Get all sites belonging to a user",
+    notes: "Returns all sites belonging to the user",
+  },
+
+  findByType:{
+    auth: {
+      strategy: "jwt",
+    },
+    handler: async function (request, h) {
+      try {
+        const filter = request.params.type;
+        const typeSites = await db.siteStore.getSitesByType(filter);
+        return typeSites;
+      } catch (err) {
+        return Boom.serverUnavailable("Database Error");
+      }
+    },
+    tags: ["api"],
+    validate: { params: TypeSpec, failAction: validationError },
+    response: { schema: SiteArraySpec, failAction: validationError },
+    description: "Get all sites belonging to a category",
+    notes: "Returns all sites belonging to a category",
   },
 
   create: {
