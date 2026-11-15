@@ -1,5 +1,9 @@
 {{> menu active="users"}}
 
 <section class="section">
-  {{> list-users}}
+  {{#if users}}
+    {{> list-users}}
+  {{else}}
+    <p>No users accounts found.</p>
+  {{/if}}
 </section>

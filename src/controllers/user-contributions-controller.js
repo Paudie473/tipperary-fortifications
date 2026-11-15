@@ -5,14 +5,15 @@ export const userContributionsController = {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
       const isAdmin = loggedInUser.role ==="admin";
+      const user = await db.userStore.getUserById(request.params.id);
       const sites = await db.siteStore.getUserSites(request.params.id);
       const viewData = {
         title: "User Contributions",
-        user: loggedInUser,
+        user,
         sites: sites,
         isAdmin,
       };
-      return h.view("my-contributions", viewData);
+      return h.view("user-contributions", viewData);
     },
   },
   
@@ -30,7 +31,7 @@ export const userContributionsController = {
       await db.siteStore.deleteSiteById(site._id);
       // In cases where an admin deletes this redirects them back to dashboard. They can delete from either view but this keeps it simple and it would be more confusing if they were on dashboard and were then redirected to just their contribution page
       if (isAdmin) return h.redirect("/dashboard");
-      return h.redirect("/mycontributions");
+      return h.redirect(`/user/${site.userid}`);
     },
   },
 };

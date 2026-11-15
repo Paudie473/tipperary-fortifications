@@ -1,0 +1,23 @@
+{{> menu}}
+
+<section class="section">
+  {{#if sites}}
+    <h1 class="title">
+      Contributions by {{user.firstName}} {{user.lastName}}
+    </h1>
+    <h2 class="subtitle">
+      {{user.email}}
+    </h2>
+    {{> list-sites-deletable}}
+  {{else}}
+    <h1 class="title">
+      {{user.firstName}} {{user.lastName}}
+    </h1>
+    <h2 class="subtitle">
+      {{user.email}}
+    </h2>
+    <div class="block">
+      <p>No sites currently attributed to user, {{user.firstName}} {{user.lastName}}.</p>
+    </div>
+  {{/if}}
+</section>

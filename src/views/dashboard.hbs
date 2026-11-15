@@ -2,12 +2,18 @@
 
 <!-- Checks if the user is an admin, allowing them to delete anything on the page. Other users can only delte their contributions in the "My Contributions" page -->
 {{> filter-sites}}
-{{#if isAdmin}}
-  <section class="section">
+<section class="section">
+{{#if sites}}
+  {{#if isAdmin}}
     {{> list-sites-deletable}}
-  </section>
-{{else}}
-  <section class="section">
+  {{else}}
     {{> list-sites}}
-  </section>
+  {{/if}}
+{{else}}
+  {{#if filter}}
+    <p>There are currently no sites matching the category filter</p>
+  {{else}}
+    <p>There are currently no sites in our database</p>
+  {{/if}}
 {{/if}}
+</section>

@@ -1,5 +1,11 @@
 {{> menu active="my-contributions"}}
 
 <section class="section">
-  {{> list-sites-deletable}}
+  {{#if sites}}
+    <h1 class="title">My Contributions</h1>
+    {{> list-sites-deletable}}
+  {{else}}
+    <p>You have no sites attributed to your user account currently.</p>
+    <p>To make an addition, please choose "Add Site" from the menu below and provide the details of the castle/fortified site that you wish to record.</p>
+  {{/if}}
 </section>
